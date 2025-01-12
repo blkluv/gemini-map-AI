@@ -1,0 +1,81 @@
+.container{
+    height: 100vh;
+}
+.leaflet-container {
+    height: 100%;
+    width: 100%;
+}
+
+.data-container{
+    background-color: rgb(37, 38, 40);
+    height: 100vh;
+    display: flex;
+    padding: 25px;
+    width: 100%;
+    display: flex;
+    background-color: '#fff';
+    text-align: center;
+}
+
+.right{
+    display: flex;
+    flex-basis: 65%;
+    height: 100%;
+    width: 100%
+}
+
+.left {
+    display: flex;
+    flex-basis: 35%;
+    background-color: rgb(41, 45, 48);
+    padding: 10px;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+.mark{
+    color: #fff;
+    font-size: 10px;
+    overflow-y: auto;
+    bottom: 30px;
+    position: absolute;
+    flex-direction: column;
+    left: 2%;
+    margin: 30 30 0 30px;
+    align-items: center;
+    text-align: center;
+    display: inline-block;
+}
+
+.mark a {
+    color: #fff; 
+    text-decoration: none; 
+    margin: 0 5px; 
+}
+
+.mark a:hover {
+    text-decoration: underline; 
+}
+
+.map-head{
+    color: rgb(255, 255, 255);
+    position: fixed;
+    top: 30px;
+    bottom: 30px;
+    left: 11%;
+    margin-bottom: 5px;
+}
+
+.logo {
+    height: 48px;
+    width: auto;
+}
+
+h2{
+    color: rgb(120, 190, 255);
+
+}
+
+
+
