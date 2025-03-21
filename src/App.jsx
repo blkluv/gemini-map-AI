@@ -14,7 +14,7 @@ function App() {
                 </h1>
                     <Gemini />
                     <p className='mark'>
-                        <a href="https://www.linkedin.com/in/ryanwjanuardi/" target="_blank" rel="noopener noreferrer"> KohRyanStudio </a> | Powered by: <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer"> Leaflet</a>, <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer"> Gemini</a>, <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>, <a href="https://locationiq.com/" target="_blank" rel="noopener noreferrer">LocationIQ</a>
+                        <a href="https://t.me/hahznft" target="_blank" rel="noopener noreferrer"> KohRyanStudio </a> | Powered by: <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer"> Leaflet</a>, <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer"> Gemini</a>, <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>, <a href="https://locationiq.com/" target="_blank" rel="noopener noreferrer">LocationIQ</a>
                     </p>
                 </div>
             </div>

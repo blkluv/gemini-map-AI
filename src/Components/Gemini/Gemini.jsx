@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useCity } from '/src/Components/hook/useCity'; 
 
 export function Gemini() {
-    const apiKey = ''; // Isi dengan Gemini API Key Anda
+    const apiKey = 'AIzaSyCbsb6fZ78zhNjWwfrZ5m9hAcvu-QF4MxI'; // Isi dengan Gemini API Key Anda
     const genAI = new GoogleGenerativeAI(apiKey);
 
     const model = genAI.getGenerativeModel({
@@ -78,7 +78,7 @@ export function Gemini() {
         <>
             {!city ? (
                 <div>
-                    <p className="click">👋 Klik pada peta untuk memilih lokasi</p>
+                    <p className="click">👋 Find the nearest dispensary near you.</p>
                 </div>
             ) : (
                 <div className="gemini-container">

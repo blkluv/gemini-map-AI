@@ -6,7 +6,7 @@ import { useCity } from "/src/Components/hook/useCity";
 
 export function Leaflet() {
     const { setCity, position, setPosition, setDetails } = useCity(); 
-    const apiKey = ''; // Isi dengan LocationIQ API Key Anda
+    const apiKey = 'pk.53e610ac56c937327d983419bc426688'; // Isi dengan LocationIQ API Key Anda
 
     function LocationMarker() {
         const map = useMapEvents({
@@ -53,7 +53,7 @@ export function Leaflet() {
 
     return (
         <div className="leaflet-container">
-            <MapContainer center={[-7.250445, 112.768845]} zoom={13} style={{ height: "100vh", width: "100%" }}>
+            <MapContainer center={[39.364283, -74.422927]} zoom={13} style={{ height: "100vh", width: "100%" }}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
