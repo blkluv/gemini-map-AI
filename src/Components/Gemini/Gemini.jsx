@@ -1,17 +1,10 @@
-// src/Components/Gemini/Gemini.jsx
 import React, { useState, useEffect } from "react";
 import './Gemini.css';
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { useCity } from '/src/Components/hook/useCity';
+import { useCity } from '/src/Components/hook/useCity'; 
 
-function Gemini() { // Removed 'export' here
-    const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-
-    if (!apiKey) {
-        console.error("Gemini API Key not found in environment variables!");
-        return <div>Error: Gemini API Key not configured. Please ensure NEXT_PUBLIC_GEMINI_API_KEY is set in your environment variables.</div>;
-    }
-
+export function Gemini() {
+    const apiKey = 'AIzaSyBTu7ARZXqOBmMxRTYmUZooXHnLWoYEGdM'; // Isi dengan Gemini API Key Anda
     const genAI = new GoogleGenerativeAI(apiKey);
 
     const model = genAI.getGenerativeModel({
@@ -26,73 +19,77 @@ function Gemini() { // Removed 'export' here
         responseMimeType: "text/plain",
     };
 
-    const { city, details, position } = useCity();
+    const { city, details, position } = useCity()
     const [responseData, setResponseData] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
 
     async function run(prompt) {
-        setIsLoading(true);
-        try {
-            const chatSession = model.startChat({
-                generationConfig,
-                history: [],
-            });
+        const chatSession = model.startChat({
+            generationConfig,
+            history: [],
+        });
 
-            const result = await chatSession.sendMessage(prompt);
-            const response = result.response;
-            console.log("Gemini Response:", response.text());
-            setResponseData(formatData(response.text()));
-        } catch (error) {
-            console.error("Error fetching data from Gemini:", error);
-            setResponseData(<div className="error-message">Error fetching information. Please try again later.</div>);
-        } finally {
-            setIsLoading(false);
-        }
+        const result = await chatSession.sendMessage(prompt);
+        const response = result.response;
+        console.log(response.text());
+        setResponseData(formatData(response.text()));
     }
 
     function formatData(data) {
+        // Header level 1 (#) menjadi <h1></h1>
         let formattedData = data.replace(/^# (.*)$/gm, '<h1>$1</h1>');
+
+        // Header level 2 (##) menjadi <h2></h2>
         formattedData = formattedData.replace(/^## (.*)$/gm, '<h4>$1</h4>');
+
+        // Header level 3 (###) menjadi <h3></h3>
         formattedData = formattedData.replace(/^### (.*)$/gm, '<h5>$1</h5>');
+
+        // Bold (**text**) menjadi <strong></strong>
         formattedData = formattedData.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+        // Italic (*text* or _text_) menjadi <em></em>
         formattedData = formattedData.replace(/\*(.*?)\*/g, '<em>$1</em>');
         formattedData = formattedData.replace(/_(.*?)_/g, '<em>$1</em>');
+
+        // Bullet points (* item) menjadi <ul><li></li></ul>
         formattedData = formattedData.replace(/^\* (.*)$/gm, '<ul><li>$1</li></ul>');
+
+        // Numbered lists (1. item) menjadi <ol><li></li></ol>
         formattedData = formattedData.replace(/^\d+\.\s(.*)$/gm, '<ol><li>$1</li></ol>');
+
+        // Links ([text](url)) menjadi <a href="url"></a>
         formattedData = formattedData.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+
+         // Tambahkan <br> setiap kali ada baris baru
         formattedData = formattedData.replace(/\n/g, '<br />');
 
         return <div dangerouslySetInnerHTML={{ __html: formattedData }} />;
     }
 
     useEffect(() => {
-        if (city && apiKey) {
+        if (city) {
             setResponseData(null);
-            const prompt = `Provide detailed information about the real estate market in ${city} (${details.address}), located in ${details.state}, ${details.country}. Include insights on current property values, recent sales trends, investment opportunities, key commercial sectors (e.g., hospitality, retail, development), local economic factors influencing the market, and notable real estate developments or projects. Return the output in English.`;
+            const prompt = `Get the complete detail of ${city} (${details.address}), located in ${details.state}, ${details.country}. Provide additional geographic, cultural, and economic information. Return the output in Bahasa Indonesia.`;
             run(prompt);
         }
-    }, [city, details, apiKey]);
+    }, [city, details]);
 
     return (
         <>
             {!city ? (
                 <div>
-                    <p className="click">👋 Click on any part of the map to learn more.</p>
+                    <p className="click">👋 Klik pada peta untuk memilih lokasi</p>
                 </div>
             ) : (
                 <div className="gemini-container">
-                    <h2>Real Estate Insights for {city}</h2>
-                    {isLoading ? (
-                        <img src="/assets/loading.gif" alt="Loading..." />
-                    ) : responseData ? (
+                    <h2>{city}</h2>
+                    {responseData ? (
                         responseData
                     ) : (
-                        <p>Fetching real estate information...</p>
+                        <img src="/assets/loading.gif" alt="Loading..." />
                     )}
                 </div>
             )}
         </>
     );
 }
-
-export default Gemini; // <---- Exporting Gemini as the default
