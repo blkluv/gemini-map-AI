@@ -1,9 +1,10 @@
+// src/Components/Gemini/Gemini.jsx
 import React, { useState, useEffect } from "react";
 import './Gemini.css';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useCity } from '/src/Components/hook/useCity';
 
-export function Gemini() {
+function Gemini() { // Removed 'export' here
     const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 
     if (!apiKey) {
@@ -27,10 +28,10 @@ export function Gemini() {
 
     const { city, details, position } = useCity();
     const [responseData, setResponseData] = useState(null);
-    const [isLoading, setIsLoading] = useState(false); // Add loading state
+    const [isLoading, setIsLoading] = useState(false);
 
     async function run(prompt) {
-        setIsLoading(true); // Set loading to true when starting the API call
+        setIsLoading(true);
         try {
             const chatSession = model.startChat({
                 generationConfig,
@@ -43,9 +44,9 @@ export function Gemini() {
             setResponseData(formatData(response.text()));
         } catch (error) {
             console.error("Error fetching data from Gemini:", error);
-            setResponseData(<div className="error-message">Error fetching information. Please try again later.</div>); // Display an error message to the user
+            setResponseData(<div className="error-message">Error fetching information. Please try again later.</div>);
         } finally {
-            setIsLoading(false); // Set loading to false after the API call completes (success or error)
+            setIsLoading(false);
         }
     }
 
@@ -67,7 +68,7 @@ export function Gemini() {
     useEffect(() => {
         if (city && apiKey) {
             setResponseData(null);
-            const prompt = `Provide detailed information about the real estate market in ${city}, Atlantic City, New Jersey. Include insights on current property values, recent sales trends, investment opportunities, key commercial sectors (e.g., hospitality, retail, development), local economic factors influencing the market, and notable real estate developments or projects. Return the output in English.`;
+            const prompt = `Provide detailed information about the real estate market in ${city} (${details.address}), located in ${details.state}, ${details.country}. Include insights on current property values, recent sales trends, investment opportunities, key commercial sectors (e.g., hospitality, retail, development), local economic factors influencing the market, and notable real estate developments or projects. Return the output in English.`;
             run(prompt);
         }
     }, [city, details, apiKey]);
@@ -76,7 +77,7 @@ export function Gemini() {
         <>
             {!city ? (
                 <div>
-                    <p className="click">👋 Click on the map to learn more</p>
+                    <p className="click">👋 Click on any part of the map to learn more.</p>
                 </div>
             ) : (
                 <div className="gemini-container">
@@ -93,3 +94,5 @@ export function Gemini() {
         </>
     );
 }
+
+export default Gemini; // <---- Exporting Gemini as the default
