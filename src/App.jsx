@@ -15,9 +15,8 @@ function App() {
                         <Gemini />
                         <p className='mark'>
                             <a href="https://creai.digital" target="_blank" rel="noopener noreferrer">
-                                MAP.
-                            </a>{' '}
-                            | Powered by: CREAI.DIGITAL
+                                MAP.</a>{' '}
+                            |Powered by:CREAI.DIGITAL
                         </p>
                     </div>
                 </div>
