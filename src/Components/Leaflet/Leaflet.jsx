@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, Marker, useMapEvents, Icon } from "react-leaflet"; // Import Icon
+import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import { Icon } from "leaflet"; // Correct import
 import { useCity } from "/src/Components/hook/useCity";
 import L from 'leaflet'; // Import Leaflet library
 
