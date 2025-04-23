@@ -52,7 +52,7 @@ function Gemini() {
     useEffect(() => {
         if (city) {
             setResponseData(null);
-            const prompt = `Get the complete detail of ${city} (${details.address}), located in ${details.state}, ${details.country}. Provide additional geographic, cultural, and economic information. Return the output in Bahasa Indonesia.`;
+            const prompt = `Get the complete detail of ${city} (${details.address}), located in ${details.state}, ${details.country}. Provide additional geographic, cultural, and economic commercial real estate information.`;
             run(prompt);
         }
     }, [city, details]);
