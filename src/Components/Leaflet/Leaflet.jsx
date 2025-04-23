@@ -1,12 +1,13 @@
 import React from "react";
 import axios from "axios";
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, useMapEvents, Icon } from "react-leaflet"; // Import Icon
 import { useCity } from "/src/Components/hook/useCity";
+import L from 'leaflet'; // Import Leaflet library
 
-export function Leaflet() {
-    const { setCity, position, setPosition, setDetails } = useCity(); 
-    const apiKey = 'pk.53e610ac56c937327d983419bc426688'; // Isi dengan LocationIQ API Key Anda
+export default function Leaflet() { // Export the component as default
+    const { setCity, position, setPosition, setDetails } = useCity();
+    const apiKey = 'pk.bb664c9dae193388a1b52145ccb969bf'; // Isi dengan LocationIQ API Key Anda
 
     function LocationMarker() {
         const map = useMapEvents({
@@ -39,7 +40,7 @@ export function Leaflet() {
         });
 
        // Create custom marker icon from image
-       const customIcon = new L.Icon({
+       const customIcon = new Icon({
         iconUrl: '/assets/marker.png', // Path to the image file in the public folder
         iconSize: [32, 32],  // Size of the icon (adjust as needed)
         iconAnchor: [16, 32], // Anchor point of the icon (bottom center of the icon)

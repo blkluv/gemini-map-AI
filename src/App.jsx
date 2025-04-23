@@ -14,7 +14,7 @@ function App() {
                         </h1>
                         <Gemini />
                         <p className='mark'>
-                            <a href="https://t.me/hahznft" target="_blank" rel="noopener noreferrer">
+                            <a href="https://creai.digital" target="_blank" rel="noopener noreferrer">
                                 MAP.
                             </a>{' '}
                             | Powered by: CREAI.DIGITAL
